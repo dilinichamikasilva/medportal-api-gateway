@@ -8,21 +8,23 @@ spring:
     import: "optional:configserver:http://localhost:8888"
   cloud:
     gateway:
-      routes:
-        - id: appointment-service
-          uri: lb://APPOINTMENT-SERVICE
-          predicates:
-            - Path=/api/v1/appointments/**
+      server:
+        webmvc:
+          routes:
+            - id: appointment-service
+              uri: lb://APPOINTMENT-SERVICE
+              predicates:
+                - Path=/api/v1/appointments/**
 
-        - id: clinical-record-service
-          uri: lb://CLINICAL-RECORD-SERVICE
-          predicates:
-            - Path=/api/v1/records/**
+            - id: clinical-record-service
+              uri: lb://CLINICAL-RECORD-SERVICE
+              predicates:
+                - Path=/api/v1/records/**
 
-        - id: lab-report-service
-          uri: lb://LAB-REPORT-SERVICE
-          predicates:
-            - Path=/api/v1/lab-reports/**
+            - id: lab-report-service
+              uri: lb://LAB-REPORT-SERVICE
+              predicates:
+                - Path=/api/v1/lab-reports/**
 
 eureka:
   client:
